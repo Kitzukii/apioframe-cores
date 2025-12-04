@@ -1,2 +1,1 @@
-local bootstrap = require("bootstrap")
-bootstrap.init()
+require("bootstrap").init()

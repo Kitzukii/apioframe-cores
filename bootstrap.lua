@@ -1,21 +1,67 @@
 local btsp = {}
 btsp.__index__ = btsp
 btsp.__updater__ = false
-btsp.can_continue = false
+btsp.can_continue = true
 
-local btsp_updater_ok, btsp__updater__ = pcall(require,"update")
+colors = colors
+term = term
+
+--[[
+Apioframe CORE Bootstrap V0.0.1
+- By Ktzukii ;3
+
+2025/12/05 @ 00:49
+]]
+
+if not os.computerID() ~= os.getComputerID() then error("Something's fishy...",3) end
+
+local btsp_updater_ok, btsp__updater__ = pcall(require, "update")
 if btsp_updater_ok and btsp__updater__ then
     btsp.__updater__ = btsp__updater__
 else
-    error("Critical error on init! (could not get updater file, or failed another way on import of said updater.)\n"..btsp__updater__)
+    error(
+        "Warning: ErrLoader could not start.\n" ..
+        "Critical error on init! (Could not load updater.)\n" ..
+        tostring(btsp__updater__)
+    )
 end
 
-function btsp.init(updatelib, etc)
-    btsp.clog("Bootstrap init called.",colors.green)
-    local ulb_ok, ulb_out = pcall(updatelib.check)
-    if ulb_ok then btsp.clog("Bootstrap update check successful. Continuing.")
-        else btsp.error("Update on bootstrap initialization failed.",ulb_out) end
+local function readFile(path)
+    local file = fs.open(path, "r")
+    if not file then return nil end
+    local contents = file.readAll()
+    file.close()
+    return textutils.unserialiseJSON(contents)
+end
+local function writeFile(path, tbl)
+    local json = textutils.serialiseJSON(tbl)
+    local file = fs.open();file.write(json)
+    return true
+end
+local function appendFile(path, tbl)
+    local existing = readFile(path) or {}
+    table.insert(existing, tbl)
+    return writeFile(path, existing)
+end
+
+function btsp.finish_install()
+    writeFile("__data__", {
+        hash = btsp.sha256(os.date())
+    })
+end
+
+function btsp.init(updatelib)
+    btsp.clog("Bootstrap init called.", colors.green)
+
+    local ok, out = pcall(updatelib.check)
+    if ok then
+        btsp.clog("Bootstrap update check successful. Continuing.", colors.green)
+    else
+        btsp.error("Update on bootstrap initialization failed.", tostring(out))
+        return false
+    end
     if not btsp.can_continue then return false end
+    require("agent")
 end
 
 function btsp.error(name, detail)
@@ -114,5 +160,4 @@ function btsp.sha256(s)
     return out
 end
 
-btsp = btsp
 return btsp
