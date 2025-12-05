@@ -51,7 +51,7 @@ end
 function btsp.init(updatelib)
     btsp.clog("Bootstrap init called.", colors.green)
 
-    local ok, out = pcall(updatelib.check)
+    local ok, out = pcall(updatelib.check, btsp)
     if ok then
         btsp.clog("Bootstrap update check successful. Continuing.", colors.green)
     else
@@ -63,14 +63,19 @@ function btsp.init(updatelib)
 end
 
 function btsp.error(name, detail)
-    btsp.clog("A error was called!\n\nOverview:\n"..name.."\n\nDetail:\n"..detail, colors.red)
+    btsp.clog("A error was called!\n\nOverview:\n"..tostring(name)
+        .."\n\nDetail:\n"..tostring(detail), colors.red)
     btsp.can_continue = false
+end
+
+function btsp.warn(name, detail)
+    btsp.clog("[WARN] ", colors.yellow)
 end
 
 function btsp.clog(s,c)
     local pc = term.getTextColor()
     term.setTextColor(c)
-    print(s);term.setTextColor(pc)
+    print("[LOG] "..tostring(s));term.setTextColor(pc)
 end
 
 function btsp.sha256(s)
