@@ -13,8 +13,6 @@ Apioframe CORE Bootstrap V0.0.1
 2025/12/05 @ 00:49
 ]]
 
-if not os.computerID() ~= os.getComputerID() then error("Something's fishy...",3) end
-
 local btsp_updater_ok, btsp__updater__ = pcall(require, "update")
 if btsp_updater_ok and btsp__updater__ then
     btsp.__updater__ = btsp__updater__

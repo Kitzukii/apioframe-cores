@@ -35,10 +35,8 @@ while true do
   lines[#lines + 1] = line
 end
 
-local function update(bootstrap)
+function lib.update(bootstrap)
     bootstrap.
 end
 
-local function check_hash()
-
-end
+return
