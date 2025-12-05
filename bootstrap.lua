@@ -1,10 +1,7 @@
 local btsp = {}
 btsp.__index__ = btsp
-btsp.__updater__ = false
+btsp.__updater__ = require("update")
 btsp.can_continue = true
-
-colors = colors
-term = term
 
 --[[
 Apioframe CORE Bootstrap V0.0.1
@@ -12,17 +9,6 @@ Apioframe CORE Bootstrap V0.0.1
 
 2025/12/05 @ 00:49
 ]]
-
-local btsp_updater_ok, btsp__updater__ = pcall(require, "update")
-if btsp_updater_ok and btsp__updater__ then
-    btsp.__updater__ = btsp__updater__
-else
-    error(
-        "Warning: ErrLoader could not start.\n" ..
-        "Critical error on init! (Could not load updater.)\n" ..
-        tostring(btsp__updater__)
-    )
-end
 
 local function readFile(path)
     local file = fs.open(path, "r")
@@ -48,10 +34,14 @@ function btsp.finish_install()
     })
 end
 
-function btsp.init(updatelib)
+function btsp.init()
     btsp.clog("Bootstrap init called.", colors.green)
+    if not turtle then
+        btsp.error("Device not a turtle!", "This device is not a turtle. And therefore is useless.\nRead the manual next time? Thanks.")
+        return false
+    end
 
-    local ok, out = pcall(updatelib.check, btsp)
+    local ok, out = pcall(btsp.__updater__.update, btsp)
     if ok then
         btsp.clog("Bootstrap update check successful. Continuing.", colors.green)
     else
@@ -63,19 +53,25 @@ function btsp.init(updatelib)
 end
 
 function btsp.error(name, detail)
-    btsp.clog("A error was called!\n\nOverview:\n"..tostring(name)
-        .."\n\nDetail:\n"..tostring(detail), colors.red)
+    local pc = term.getTextColor()
+    term.setTextColor(colors.red)
+    print("A error was called!\n\nOverview:\n"..tostring(name)
+        .."\n\nDetail:\n"..tostring(detail))
     btsp.can_continue = false
 end
 
-function btsp.warn(name, detail)
-    btsp.clog("[WARN] ", colors.yellow)
+function btsp.warn(s)
+    local pc = term.getTextColor()
+    term.setTextColor(colors.yellow)
+    print("[WARN] "..tostring(s))
+    term.setTextColor(pc)
 end
 
 function btsp.clog(s,c)
     local pc = term.getTextColor()
     term.setTextColor(c)
-    print("[LOG] "..tostring(s));term.setTextColor(pc)
+    print("[LOG] "..tostring(s))
+    term.setTextColor(pc)
 end
 
 function btsp.sha256(s)
