@@ -6,7 +6,8 @@ fs=fs
 http=http
 
 -- needed files for updating
--- (weirdly, you need to update to update/add more files to download)
+-- (weirdly, you need to update to update/add more files to download;
+--  since this is inside the code)
 local needed_files = {
     "__data__", "__version__",
     "agent.lua", "bootstrap.lua",

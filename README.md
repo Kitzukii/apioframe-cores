@@ -7,3 +7,15 @@ So, this is meant for turtles. I'll add a youtube video or something later on ho
 Just take the following files, put them in the turtle and then reboot it.
 Should work after that. If not, it's a problem on your end.
 (ping 'ktzukii' on the RCC discord if you *really* need help.)
+<br>
+startup.lua<br>
+update.lua<br>
+agent.lua<br>
+bootstrap.lua<br>
+__version__<br>
+_data__<br>
+LICENSE<br>
+<br>
+Any other files will be ignored.
+<br>
+Please note that the turtle will reboot after updating to make sure it has all files (since the files table has to be updated before it can actually do stuff)

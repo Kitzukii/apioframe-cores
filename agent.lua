@@ -5,6 +5,10 @@ local sides = {
 };local dir_sides = {
     "top", "bottom"
 }
+if not turtle then
+    print("DEVICE IS NOT A CC_TURTLE TYPE.\nAUTO-SELECTING \"just acting as useless computer taking up ram and cpu\" OPTION.")
+    return
+end
 
 local function detectSigns()
     local signs = {}

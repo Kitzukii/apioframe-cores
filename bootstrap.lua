@@ -36,10 +36,10 @@ end
 
 function btsp.init()
     btsp.clog("Bootstrap init called.", colors.green)
-    if not turtle then
-        btsp.error("Device not a turtle!", "This device is not a turtle. And therefore is useless.\nRead the manual next time? Thanks.")
-        return false
-    end
+    -- if not turtle then
+    --     btsp.error("Device not a turtle!", "This device is not a turtle. And therefore is useless.\nRead the manual next time? Thanks.")
+    --     return false
+    -- end
 
     local ok, out = pcall(btsp.__updater__.update, btsp)
     if ok then
