@@ -8,13 +8,15 @@ Just take the following files, put them in the turtle and then reboot it.
 Should work after that. If not, it's a problem on your end.
 (ping 'ktzukii' on the RCC discord if you *really* need help.)
 <br>
-startup.lua<br>
-update.lua<br>
-agent.lua<br>
-bootstrap.lua<br>
-__version__<br>
-_data__<br>
-LICENSE<br>
+```
+startup.lua
+update.lua
+agent.lua
+bootstrap.lua
+__version__
+_data__
+LICENSE
+```
 <br>
 Any other files will be ignored.
 <br>
