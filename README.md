@@ -1,5 +1,5 @@
 ## Hi. This is apioframe-cores. This will be apioframe's alternative to Personality Cores.
-I will not be accepting any PRs to this project so that I can know what the fuck is going on, and not have to wait for someone else to explain their shitcode and HORRENDOUS ai code.
+I will not be accepting any PRs to this project so that I can know what the fuck is going on, and not have to wait for someone else to explain literally anything.
 Better to blame it on myself than a **certain** person. They know who they are anyways. (not you, qrmcat)
 ### Main Information Section
 So, this is meant for turtles. I'll add a youtube video or something later on how they function and how to set their roaming area up later, as usual. (procrastination is fun)
