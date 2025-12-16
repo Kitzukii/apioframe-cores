@@ -71,4 +71,5 @@ while true do
             SignOnFront(pfront)
         end
     end
+    os.sleep(0)
 end
