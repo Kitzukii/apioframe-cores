@@ -11,8 +11,7 @@ http=http
 local needed_files = {
     "__data__", "__version__",
     "agent.lua", "bootstrap.lua",
-    "startup.lua", "update.lua",
-    "LISENCE"
+    "startup.lua", "update.lua"
 }
 
 local function splitVersion(v)
