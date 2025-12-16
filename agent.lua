@@ -58,11 +58,17 @@ while true do
     local pfront = peripheral.wrap("front")
     local pleft = peripheral.wrap("left")
     local pright = peripheral.wrap("right")
-    if peripheral.getType(pleft) == "minecraft:sign" then
-        SignOnLeft(pleft)
-    elseif peripheral.getType(pright) == "minecraft:sign" then
-        SignOnRight(pright)
-    elseif peripheral.getType(pfront) == "minecraft:sign" then
-        SignOnFront(pfront)
+    if pleft then
+        if peripheral.getType(pleft) == "minecraft:sign" then
+            SignOnLeft(pleft)
+        end
+    elseif pright then
+        if peripheral.getType(pright) == "minecraft:sign" then
+            SignOnRight(pright)
+        end
+    elseif pfront then
+        if peripheral.getType(pfront) == "minecraft:sign" then
+            SignOnFront(pfront)
+        end
     end
 end
