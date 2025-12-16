@@ -1,5 +1,5 @@
 local lib = {}
-local uri = "https://raw.githubusercontent.com/Kitzukii/apioframe-cores/refs/heads/main/"
+local uri = "https://raw.githubusercontent.com/Kitzukii/apioframe-cores/refs/heads/main/agent/"
 local version_ext = "__version__"
 
 fs=fs
@@ -142,7 +142,9 @@ function lib.update(bootstrap)
         fs.delete(tmp)
         fs.delete(backup)
 
-        bootstrap.clog("Update complete.", colors.green)
+        bootstrap.clog("Update complete. Restarting...", colors.green)
+        os.sleep(2)
+        os.reboot()
     end
 end
 
