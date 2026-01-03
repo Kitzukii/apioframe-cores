@@ -35,7 +35,8 @@ function btsp.finish_install()
 end
 
 function btsp.init()
-    btsp.clog("Bootstrap init called.", colors.green)
+    btsp.clog("Bootstrap is loading..", colors.green)
+    os.sleep(0.1+math.random(-0.05,0.05))
     -- if not turtle then
     --     btsp.error("Device not a turtle!", "This device is not a turtle. And therefore is useless.\nRead the manual next time? Thanks.")
     --     return false
@@ -43,7 +44,7 @@ function btsp.init()
 
     local ok, out = pcall(btsp.__updater__.update, btsp)
     if ok then
-        btsp.clog("Bootstrap update check successful. Continuing.", colors.green)
+        btsp.clog("", colors.green)
     else
         btsp.error("Update on bootstrap initialization failed.", tostring(out))
         return false

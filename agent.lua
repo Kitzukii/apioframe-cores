@@ -48,6 +48,7 @@ local function SignOnRight(sign)
     print("")
     print("Sign on RIGHT")
     for step=1,4 do
+        if not content then return end
         if content[step] or content[step] ~= "" then print(content[step]) end
     end
 end
